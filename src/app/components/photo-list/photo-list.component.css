@@ -1,0 +1,4 @@
+.card-photo:hover {
+    cursor:pointer;
+    border: 1px solid #333;
+} 
