@@ -1,1 +1,43 @@
-<p>photo-preview works!</p>
+<div class="row" *ngIf="!photo; else main">
+  <h1>Loading ...</h1>
+</div>
+
+<ng-template #main>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <img
+          [src]="'http://localhost:3800/' + photo.imagePath"
+          class="img-fluid"
+        />
+        <button class="btn btn-danger mt-4" (click)="deletePhoto(photo._id)">Delete</button>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <form class="card-body" (submit)="updatePhoto(photo._id,title,description)">
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Photo's title"
+              [value]="photo.title"
+              #title />
+          </div>
+          <div class="form-group">
+            <textarea
+              rows="2"
+              class="form-control"
+              placeholder="photo.description"
+              [value]="photo.description"
+              #description></textarea>
+          </div>
+          <button class="btn btn-primary btn-block">
+              Update
+          </button>
+        </form>
+      </div>
+    </div>
+    
+  </div>
+</ng-template>
